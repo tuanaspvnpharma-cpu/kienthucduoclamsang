@@ -336,5 +336,6 @@
     window.addEventListener('load', function () {
       navigator.serviceWorker.register('sw.js').catch(function () { /* ứng dụng vẫn chạy trực tuyến */ });
     });
+    navigator.serviceWorker.ready.then(function () { $('sw-text').hidden = false; });
   }
 })();
