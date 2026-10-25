@@ -1,7 +1,7 @@
 /* Service worker – ClinPharmAI Portal.
    Tăng CACHE_VERSION mỗi lần đổi app shell hoặc data/catalog.json. */
 'use strict';
-var CACHE_VERSION = 'cpa-1.0.1';
+var CACHE_VERSION = 'cpa-1.1.0';
 var SHELL = [
   './', 'index.html', 'manifest.webmanifest',
   'css/base.css', 'css/theme.css', 'js/lib.js', 'js/app.js',

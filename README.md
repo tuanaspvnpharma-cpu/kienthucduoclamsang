@@ -1,6 +1,6 @@
 # ClinPharmAI – Cổng tra cứu dược lâm sàng
 
-Web app (PWA, chạy ngoại tuyến) có **thanh điều hướng bên trái** để mở 20 tài liệu sẵn có: tóm tắt guideline, tài liệu thông tin thuốc, so sánh dược lý lâm sàng, thẩm định bài báo EBM. Các trang gốc **không bị chỉnh sửa**; cổng chỉ hiển thị chúng trong khung bên phải.
+Web app (PWA, chạy ngoại tuyến) có **thanh điều hướng bên trái** để mở 22 tài liệu sẵn có: tóm tắt guideline, tài liệu thông tin thuốc, so sánh dược lý lâm sàng, thẩm định bài báo EBM. Các trang gốc **không bị chỉnh sửa**; cổng chỉ hiển thị chúng trong khung bên phải.
 
 ## Tính năng
 - Sidebar trái nhóm theo 4 danh mục, đếm số tài liệu, nhớ nhóm đang mở/đóng.
@@ -10,7 +10,7 @@ Web app (PWA, chạy ngoại tuyến) có **thanh điều hướng bên trái** 
 - Điện thoại (< 900 px): sidebar thành ngăn kéo trượt, có lớp phủ, đóng bằng `Esc` hoặc chạm ra ngoài.
 - Máy tính: nút ☰ thu gọn/mở rộng sidebar (nhớ trạng thái).
 - Theme đơn vị: Phương Nam (mặc định) / Phương Châu.
-- Ngoại tuyến: service worker lưu sẵn app và cả 20 trang (lấy danh sách từ `data/catalog.json`).
+- Ngoại tuyến: service worker lưu sẵn app và cả 22 trang (lấy danh sách từ `data/catalog.json`).
 
 ## Chạy trên máy
 Trình duyệt chặn đọc JSON khi mở trực tiếp `index.html` (file://). Dùng máy chủ cục bộ kèm theo (không cần cài Node/Python):
@@ -22,7 +22,7 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 Rồi mở http://localhost:8080. Kiểm thử: http://localhost:8080/tests/
 
 ## Triển khai GitHub Pages
-Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. Lưu ý: repo public thì ai cũng xem được 20 tài liệu.
+Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. Lưu ý: repo public thì ai cũng xem được 22 tài liệu.
 
 ## Cấu trúc
 ```
@@ -35,7 +35,7 @@ data/catalog.json       danh mục tài liệu (version, updated, source, status
 sw.js, manifest.webmanifest, icons/   PWA
 tests/                  ca kiểm thử (mở tests/index.html qua máy chủ)
 serve.ps1               máy chủ tĩnh cục bộ
-*.html (gốc)            20 tài liệu – không chỉnh sửa
+*.html (gốc)            22 tài liệu – không chỉnh sửa
 ```
 
 ## Thêm tài liệu mới
