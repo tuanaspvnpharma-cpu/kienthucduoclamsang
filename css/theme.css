@@ -1,0 +1,8 @@
+/* Lớp theme theo đơn vị: chỉ đổi màu sidebar và màu nhấn. Tên đơn vị đặt trong js/app.js (UNITS). */
+:root[data-unit="phuong-nam"]{
+  --sb-bg:#1b2a4a;--sb-bg2:#26385e;--sb-hl:#7a2e5c;--accent:#7a2e5c;
+}
+/* Phương Châu: màu tạm, cần thay theo bộ nhận diện chính thức của đơn vị. */
+:root[data-unit="phuong-chau"]{
+  --sb-bg:#4a1b36;--sb-bg2:#5e2648;--sb-hl:#c2477f;--accent:#c2477f;
+}
