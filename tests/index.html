@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kiểm thử cổng</title>
+<style>
+  body{font:14px/1.5 system-ui,'Segoe UI',sans-serif;margin:16px;background:#f2f5fa;color:#0a1020}
+  h1{font-size:18px}
+  .sum{font-weight:700;padding:8px 12px;border-radius:8px;display:inline-block}
+  .ok{background:#d9ebe1;color:#245d43}.bad{background:#f1dce1;color:#8b394d}
+  ol{padding-left:22px} li.f{color:#8b394d;font-weight:600} small{color:#4a5a73}
+</style>
+</head>
+<body>
+<h1>Kiểm thử ClinPharmAI Portal</h1>
+<p id="summary" class="sum">Đang chạy…</p>
+<h2>1. Hàm thuần (js/lib.js)</h2><ol id="unit"></ol>
+<h2>2. Tích hợp (danh mục ↔ tệp thật)</h2><ol id="integ"></ol>
+<script src="../js/lib.js"></script>
+<script src="lib.test.js"></script>
+<script>
+(async function () {
+  'use strict';
+  var C = window.CPA, integ = [];
+  function add(name, ok, detail) { integ.push({ name: name, ok: !!ok, detail: detail || '' }); }
+
+  try {
+    var res = await fetch('../data/catalog.json', { cache: 'no-store' });
+    var cat = await res.json();
+    var errs = C.validateCatalog(cat);
+    add('data/catalog.json đúng schema', !errs.length, errs.join('; '));
+    add('Có nhãn trạng thái kiểm chứng (status)', cat.status === 'verified' || cat.status === 'unverified', cat.status);
+
+    var parser = new DOMParser();
+    for (const r of cat.records) {
+      var url = '../' + C.pageUrl(r.file);
+      var resp = await fetch(url, { cache: 'no-store' });
+      if (!resp.ok) { add('Tồn tại: ' + r.file, false, 'HTTP ' + resp.status); continue; }
+      var doc = parser.parseFromString(await resp.text(), 'text/html');
+      var t = (doc.querySelector('title') || {}).textContent || '';
+      t = t.trim();
+      add('Tiêu đề chép nguyên văn: ' + r.id, t === r.title, 'tệp: "' + t + '" / catalog: "' + r.title + '"');
+    }
+    for (const p of ['index.html', 'manifest.webmanifest', 'sw.js', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon.svg']) {
+      var rr = await fetch('../' + p, { method: 'HEAD', cache: 'no-store' });
+      add('Tệp app tồn tại: ' + p, rr.ok, 'HTTP ' + rr.status);
+    }
+    var mf = await (await fetch('../manifest.webmanifest', { cache: 'no-store' })).json();
+    add('manifest có icon 192 và 512', ['192x192', '512x512'].every(function (s) { return mf.icons.some(function (i) { return i.sizes === s; }); }));
+  } catch (e) {
+    add('Chạy kiểm thử tích hợp', false, String(e));
+  }
+
+  function render(listId, rows) {
+    var ol = document.getElementById(listId);
+    rows.forEach(function (r) {
+      var li = document.createElement('li');
+      li.textContent = (r.ok ? '✓ ' : '✗ ') + r.name;
+      if (!r.ok) { li.className = 'f'; var s = document.createElement('small'); s.textContent = ' — ' + r.detail; li.appendChild(s); }
+      ol.appendChild(li);
+    });
+  }
+  var unit = window.LIB_TEST_RESULTS || [];
+  render('unit', unit); render('integ', integ);
+  var all = unit.concat(integ), fail = all.filter(function (r) { return !r.ok; }).length;
+  var s = document.getElementById('summary');
+  s.textContent = 'Tổng: ' + (all.length - fail) + ' đạt, ' + fail + ' lỗi';
+  s.className = 'sum ' + (fail ? 'bad' : 'ok');
+  window.TEST_SUMMARY = { total: all.length, fail: fail, failed: all.filter(function (r) { return !r.ok; }) };
+})();
+</script>
+</body>
+</html>

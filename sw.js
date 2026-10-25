@@ -1,7 +1,7 @@
 /* Service worker – ClinPharmAI Portal.
    Tăng CACHE_VERSION mỗi lần đổi app shell hoặc data/catalog.json. */
 'use strict';
-var CACHE_VERSION = 'cpa-1.0.0';
+var CACHE_VERSION = 'cpa-1.0.1';
 var SHELL = [
   './', 'index.html', 'manifest.webmanifest',
   'css/base.css', 'css/theme.css', 'js/lib.js', 'js/app.js',
@@ -54,7 +54,8 @@ function staleWhileRevalidate(event, request) {
 
 self.addEventListener('fetch', function (event) {
   var req = event.request;
-  if (req.method !== 'GET') return;
+  /* cache: 'no-store' (dùng trong tests/) luôn đi thẳng mạng để kiểm tra tệp thật. */
+  if (req.method !== 'GET' || req.cache === 'no-store') return;
   var url = new URL(req.url);
   if (url.origin === self.location.origin || CDN_HOSTS.indexOf(url.hostname) !== -1) {
     event.respondWith(staleWhileRevalidate(event, req));
