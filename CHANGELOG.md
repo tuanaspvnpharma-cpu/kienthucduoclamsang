@@ -1,5 +1,10 @@
 # Nhật ký thay đổi
 
+## 1.2.0 – 2026-10-25
+- Đổi tên cổng: "ClinPharmAI" → **La bàn Dược Lâm Sàng** (khẩu hiệu: "Định hướng điều trị theo bằng chứng"); cập nhật tiêu đề trang, manifest (`short_name`: "La bàn DLS").
+- Logo mới: la bàn – kim viên nang; SVG nội tuyến trên sidebar (theo màu đơn vị), `icons/icon.svg`, PNG 192/512 vẽ lại.
+- Service worker `cpa-1.2.0`; trang tự tải lại một lần khi có bản service worker mới, để người dùng thấy cập nhật ngay (có hiệu lực từ bản này trở đi).
+
 ## 1.1.0 – 2026-10-25
 - Thêm 2 tài liệu vào nhóm "Tóm tắt guideline" (tệp chép nguyên trạng, không chỉnh sửa):
   - `KDIGO-AKI-AKD-2026-Ch3-4-tom-tat.html` – KDIGO AKI/AKD (dự thảo 03/2026), chương 3–4.

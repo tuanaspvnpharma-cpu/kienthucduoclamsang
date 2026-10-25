@@ -1,4 +1,8 @@
-# ClinPharmAI – Cổng tra cứu dược lâm sàng
+# La bàn Dược Lâm Sàng
+
+*Định hướng điều trị theo bằng chứng – cổng tra cứu cho dược sĩ.*
+
+Logo: vòng la bàn có kim là viên nang (nửa vàng chỉ hướng, nửa trắng). Ý nghĩa: dược sĩ lâm sàng định hướng lựa chọn và sử dụng thuốc theo bằng chứng. Tệp gốc: `icons/icon.svg`; logo trên sidebar vẽ bằng SVG nội tuyến nên đổi màu theo đơn vị.
 
 Web app (PWA, chạy ngoại tuyến) có **thanh điều hướng bên trái** để mở 22 tài liệu sẵn có: tóm tắt guideline, tài liệu thông tin thuốc, so sánh dược lý lâm sàng, thẩm định bài báo EBM. Các trang gốc **không bị chỉnh sửa**; cổng chỉ hiển thị chúng trong khung bên phải.
 

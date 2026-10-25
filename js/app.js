@@ -1,4 +1,4 @@
-/* ClinPharmAI Portal – điều khiển giao diện. Logic thuần nằm ở js/lib.js (window.CPA). */
+/* La bàn Dược Lâm Sàng – điều khiển giao diện. Logic thuần nằm ở js/lib.js (window.CPA). */
 (function () {
   'use strict';
   var C = window.CPA;
@@ -189,8 +189,8 @@
     el.actions.hidden = true;
     el.frame.removeAttribute('src');
     el.cat.textContent = 'Trang chủ';
-    el.title.textContent = 'Cổng tra cứu dược lâm sàng';
-    document.title = 'ClinPharmAI – Cổng tra cứu';
+    el.title.textContent = 'Định hướng điều trị theo bằng chứng';
+    document.title = 'La bàn Dược Lâm Sàng';
     renderRecent();
   }
 
@@ -205,7 +205,7 @@
     el.title.textContent = r.label;
     el.title.title = r.title;
     el.frame.title = r.title;
-    document.title = r.label + ' – ClinPharmAI';
+    document.title = r.label + ' – La bàn Dược Lâm Sàng';
     el.open.href = url;
     var nb = C.neighbors(state.ordered, r.id);
     el.prev.disabled = !nb.prev; el.prev.title = nb.prev ? 'Trước: ' + nb.prev.label : 'Tài liệu trước';
@@ -337,5 +337,10 @@
       navigator.serviceWorker.register('sw.js').catch(function () { /* ứng dụng vẫn chạy trực tuyến */ });
     });
     navigator.serviceWorker.ready.then(function () { $('sw-text').hidden = false; });
+    /* Bản mới của service worker vừa nhận quyền: tải lại một lần để hiện ngay giao diện/danh mục mới. */
+    var hadController = !!navigator.serviceWorker.controller, reloaded = false;
+    navigator.serviceWorker.addEventListener('controllerchange', function () {
+      if (hadController && !reloaded) { reloaded = true; location.reload(); }
+    });
   }
 })();

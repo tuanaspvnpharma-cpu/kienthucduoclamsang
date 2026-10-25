@@ -35,10 +35,16 @@ body.sb-collapsed .sb{margin-left:calc(-1 * var(--sb-w))}
 /* ===== Sidebar ===== */
 .sb-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:14px 14px 10px}
 .brand{display:flex;align-items:center;gap:10px;min-width:0}
-.brand-mark{flex:0 0 40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:22px;font-weight:700;
-  background:var(--sb-hl);color:#fff}
-.brand-text{display:flex;flex-direction:column;min-width:0}
-.brand-text strong{font-size:16px;letter-spacing:.2px}
+.brand-logo{flex:0 0 46px;width:46px;height:46px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))}
+.bl-face{fill:var(--sb-hl,#7a2e5c)}
+.bl-ring{fill:none;stroke:#fff;stroke-opacity:.85;stroke-width:1.8}
+.bl-tick{stroke:#fff;stroke-width:2.2;stroke-linecap:round}
+.bl-gold{fill:#f2c14e}
+.bl-white{fill:#fff}
+.bl-pin{fill:var(--sb-bg,#1b2a4a)}
+.brand-text{display:flex;flex-direction:column;min-width:0;line-height:1.2}
+.brand-kicker{font-size:11px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:#f2c14e}
+.brand-text strong{font-size:17px;letter-spacing:.2px}
 .brand-text small{color:var(--sb-mut);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sb .sb-close{display:none}
 

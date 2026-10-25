@@ -1,7 +1,7 @@
 {
-  "name": "ClinPharmAI – Cổng tra cứu dược lâm sàng",
-  "short_name": "ClinPharmAI",
-  "description": "Tóm tắt guideline, thông tin thuốc, so sánh dược lý lâm sàng, thẩm định EBM.",
+  "name": "La bàn Dược Lâm Sàng",
+  "short_name": "La bàn DLS",
+  "description": "Định hướng điều trị theo bằng chứng cho dược sĩ: tóm tắt guideline, thông tin thuốc, so sánh dược lý lâm sàng, thẩm định EBM.",
   "lang": "vi",
   "start_url": "./index.html",
   "scope": "./",
